@@ -1,6 +1,7 @@
 require "abstract_controller/base"
 require "action_view"
 require "active_support/core_ext/object/instance_variables"
+require "active_support/hash_with_indifferent_access"
 
 module AbstractController
   class DoubleRenderError < Error
@@ -138,7 +139,7 @@ module AbstractController
     end
 
     # Normalize args by converting render "foo" to render :action => "foo" and
-    # render "foo/bar" to render :file => "foo/bar".
+    # render "foo/bar" to render :app_template_file => "foo/bar".
     # :api: plugin
     def _normalize_args(action=nil, options={})
       case action
